@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         numero.setText(""+bien);
         nfinal=Float.parseFloat(bien);
 
-        timer = new CountDownTimer(2000,200) {
+        timer = new CountDownTimer(3000,300) {
             @Override
             public void onTick(long millisUntilFinished) {
                 avance= (float) (avance+0.1);
@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
                     Toast.makeText(MainActivity.this, "Intenta de nuevo", Toast.LENGTH_SHORT).show();
+                    final DecimalFormat df = new DecimalFormat("#.0");
+                    random = (float) (Math.random()*3);
+                    bien = df.format(random);
+                    numero.setText(""+bien);
+
+
                 }
 
 
