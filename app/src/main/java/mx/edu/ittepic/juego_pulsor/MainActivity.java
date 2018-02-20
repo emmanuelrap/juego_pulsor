@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "G A N A D O R", Toast.LENGTH_SHORT).show();
                     timer.cancel();
                 }else {
-                    Toast.makeText(MainActivity.this, "Intenta de nuevo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Intenta de Nuevo", Toast.LENGTH_SHORT).show();
                     final DecimalFormat df = new DecimalFormat("#.0");
                     random = (float) (Math.random()*3);
                     random2 = df.format(random);
