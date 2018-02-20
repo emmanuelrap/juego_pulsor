@@ -11,10 +11,8 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    Button boton;
-    TextView numero,num_secuencia;
-    float random,nfinal,avance,cap;
-    String bien,bien2,bien3;
+    float random,randomFloat,avance=0,auxFloat;
+    String random2,secuenciaString,aux; //Random2 es la variable que se genera con punto decimal en string
     CountDownTimer timer;
 
     @Override
@@ -22,57 +20,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        boton = findViewById(R.id.button);
-        numero = findViewById(R.id.textView);
-        num_secuencia = findViewById(R.id.textView2);
-        avance=0;
-
+        final Button bt1 = findViewById(R.id.button);
+        final TextView numero = findViewById(R.id.textView);
+        final TextView num_secuencia = findViewById(R.id.textView2);
         final DecimalFormat df = new DecimalFormat("#.0");
+
         random = (float) (Math.random()*3);
-        bien = df.format(random);
-        numero.setText(""+bien);
-        nfinal=Float.parseFloat(bien);
+        random2 = df.format(random);
+        randomFloat=Float.parseFloat(random2);
+
+        numero.setText(""+random2);
 
         timer = new CountDownTimer(3000,300) {
             @Override
             public void onTick(long millisUntilFinished) {
                 avance= (float) (avance+0.1);
-                bien2 = df.format(avance);
-                num_secuencia.setText(""+bien2);
+                secuenciaString = df.format(avance);
+                num_secuencia.setText(""+secuenciaString);
 
-                if (avance>=2.9){
+                if (avance>=3){
                     avance= (float) 0.0;
                 }
-
             }
 
             @Override
             public void onFinish() {
                 timer.start();
-
             }
         };timer.start();
 
-        boton.setOnClickListener(new View.OnClickListener() {
+        bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bien3=bien2;
-                cap= Float.parseFloat(bien3);
-                if (nfinal==cap){
+                aux=secuenciaString;
+                auxFloat = Float.parseFloat(aux);
+                if (randomFloat==auxFloat){
                     Toast.makeText(MainActivity.this, "G A N A D O R", Toast.LENGTH_SHORT).show();
                     timer.cancel();
-
                 }else {
                     Toast.makeText(MainActivity.this, "Intenta de nuevo", Toast.LENGTH_SHORT).show();
                     final DecimalFormat df = new DecimalFormat("#.0");
                     random = (float) (Math.random()*3);
-                    bien = df.format(random);
-                    numero.setText(""+bien);
-
-
+                    random2 = df.format(random);
+                    numero.setText(""+random2);
                 }
-
-
             }
         });
     }
